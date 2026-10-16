@@ -1,0 +1,148 @@
+/**
+ * Main Stylesheet
+ * Görkem Kılınç Portfolio
+ * Modern Professional Design with Pure CSS
+ */
+
+/* Import all CSS modules */
+@import url('./reset.css');
+@import url('./variables.css');
+@import url('./typography.css');
+@import url('./layout.css');
+
+/* Components */
+@import url('./components/navigation.css');
+@import url('./components/buttons.css');
+@import url('./components/cards.css');
+
+/* Sections */
+@import url('./sections/hero.css');
+
+/* Utilities */
+@import url('./utilities.css');
+
+/* Base styles */
+html {
+  font-size: 16px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling with offset for fixed header */
+html {
+  scroll-padding-top: calc(var(--header-height) + 2rem);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-400);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background-color: var(--color-gray-900);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-600);
+  border-color: var(--color-gray-900);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-400) var(--color-surface);
+}
+
+[data-theme="dark"] * {
+  scrollbar-color: var(--color-gray-600) var(--color-gray-900);
+}
+
+/* Focus visible styles */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Skip to content link (accessibility) */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-primary);
+  color: white;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-weight: var(--font-semibold);
+  z-index: 9999;
+  transition: top var(--transition-base);
+}
+
+.skip-to-content:focus {
+  top: var(--space-md);
+}
+
+/* Page transitions */
+.page-transition {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Easter egg styles */
+.konami-activated body {
+  animation: rainbow-bg 3s linear infinite;
+}
+
+@keyframes rainbow-bg {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Dev mode grid overlay */
+.dev-mode-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 7px, rgba(255, 0, 0, 0.1) 7px, rgba(255, 0, 0, 0.1) 8px),
+    repeating-linear-gradient(90deg, transparent, transparent 7px, rgba(255, 0, 0, 0.1) 7px, rgba(255, 0, 0, 0.1) 8px);
+}
+
+/* Print styles */
+@media print {
+  .nav,
+  .hero-scroll,
+  .theme-toggle,
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    color: black !important;
+    background: white !important;
+  }
+  
+  .card {
+    page-break-inside: avoid;
+  }
+}
